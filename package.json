@@ -1,0 +1,27 @@
+{
+  "name": "celar-be",
+  "version": "1.0.0",
+  "description": "celar assessment BE",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm run build",
+    "start": "node dist/index.js",
+    "build": "rimraf dist && npx tsc",
+    "preserve": "npm run build",
+    "serve": "concurrently \"npx tsc -w\" \"nodemon dist/index.js\""
+  },
+  "author": "Daniel Maina",
+  "license": "MIT",
+  "dependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.1.0",
+    "concurrently": "^9.2.0",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
