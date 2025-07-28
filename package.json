@@ -8,20 +8,37 @@
     "start": "node dist/index.js",
     "build": "rimraf dist && npx tsc",
     "preserve": "npm run build",
-    "serve": "concurrently \"npx tsc -w\" \"nodemon dist/index.js\""
+    "serve": "concurrently \"npx tsc -w\" \"nodemon dist/index.js\"",
+    "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -d ./src/database/ormconfig.ts",
+    "migration:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert -d ./src/database/ormconfig.ts",
+    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d ./src/database/ormconfig.ts",
+    "seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed"
   },
   "author": "Daniel Maina",
   "license": "MIT",
   "dependencies": {
     "@types/express": "^5.0.3",
     "@types/node": "^24.1.0",
+    "bcrypt": "^6.0.0",
+    "cliui": "7.0.4",
     "concurrently": "^9.2.0",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.3",
+    "reflect-metadata": "^0.2.2",
     "rimraf": "^6.0.1",
-    "typescript": "^5.8.3"
+    "typeorm": "^0.3.25",
+    "typescript": "^5.8.3",
+    "yargs": "17.7.2"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/jsonwebtoken": "^9.0.10",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2"
   }
 }
