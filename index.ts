@@ -3,6 +3,8 @@ import express, { Express, Request, Response } from "express";
 import { dataSource } from "./src/database/ormconfig";
 import AuthRouter from "./src/modules/auth";
 import cors from 'cors';
+import morgan from 'morgan';
+
 
 configDotenv();
 
@@ -15,8 +17,10 @@ dataSource.initialize()
 
 const app: Express = express();
 
+app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
+
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");

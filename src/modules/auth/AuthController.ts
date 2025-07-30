@@ -4,6 +4,8 @@ import { dataSource } from '../../database/ormconfig';
 import ErrorHandler from '../../utils/errorHandler';
 import ResponseHandler from '../../utils/responseHandler';
 import { generateToken, isPasswordValid } from '../../utils/auth';
+import { CURRENCY } from '../../utils/constants';
+import { Transaction } from '../../database/entities/transactions.entity';
 
 
 
@@ -26,6 +28,38 @@ class AuthController {
             });
 
             const user = await userRepository.save(userdata);
+
+            // Seed the user with mock transactions after the database has been seeded
+            // Check if the DB actuall has the data seeded in, if not, then seed it 'irst
+
+            const seededUser = await userRepository.findOneBy({ email: 'psp@example.com' }); 
+            if (seededUser) {
+                const transactionRepo = dataSource.getRepository(Transaction);
+                const transactions = transactionRepo.create([
+                    {
+                    amount: 250.75,
+                    currency: CURRENCY.KES,
+                    sender: user,
+                    recipient: seededUser,
+                    },
+                    {
+                    amount: 130.50,
+                    currency: CURRENCY.USD,
+                    sender: user,
+                    recipient: seededUser,
+                    },
+                    {
+                    amount: 1000,
+                    currency: CURRENCY.KES,
+                    sender: user,
+                    recipient: seededUser,
+                    },
+                ]);
+
+                await transactionRepo.save(transactions);
+            }
+
+
             return ResponseHandler.response(res, [201, 'User registered successfully', true], user); 
 
             
