@@ -21,3 +21,16 @@ export const loginValidator = [
   body('password')
     .exists().withMessage('password is required')
 ];
+
+// receipientId should be uuid and amount should be a positive number
+export const transactionValidator = [
+  body('recipientId')
+    .exists().withMessage('Recipient ID is required')
+    .isUUID().withMessage('Recipient ID must be a UUID'),
+  body('amount')
+    .exists().withMessage('Amount is required')
+    .isFloat({ gt: 0 }).withMessage('Amount must be a positive number'),
+  body('currency')
+    .exists().withMessage('Currency is required')
+    .isIn(['KES', 'USD']).withMessage('Currency must be either KES or USD')
+];

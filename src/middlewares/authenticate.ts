@@ -9,8 +9,8 @@ declare global {
   }
 }
 
-const authenticate = (req: Request, res: Response, next: NextFunction) => {
-  const token = req.headers.authorization
+export const authenticate = (req: Request, res: Response, next: NextFunction) => {
+  let token = req.headers.authorization
     || req.body.token
     || req.query.token;
 
@@ -27,6 +27,11 @@ const authenticate = (req: Request, res: Response, next: NextFunction) => {
       success: false,
       error: 'JWT secret key is not configured',
     });
+  }
+
+  // If the token came from the Authorization header, remove "Bearer "
+  if (typeof token === 'string' && token.startsWith('Bearer ')) {
+    token = token.slice(7); // remove "Bearer "
   }
 
   jwt.verify(

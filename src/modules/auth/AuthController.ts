@@ -37,22 +37,22 @@ class AuthController {
                 const transactionRepo = dataSource.getRepository(Transaction);
                 const transactions = transactionRepo.create([
                     {
-                    amount: 250.75,
-                    currency: CURRENCY.KES,
-                    sender: user,
-                    recipient: seededUser,
+                        amount: 250.75,
+                        currency: CURRENCY.KES,
+                        sender: user,
+                        recipient: seededUser,
                     },
                     {
-                    amount: 130.50,
-                    currency: CURRENCY.USD,
-                    sender: user,
-                    recipient: seededUser,
+                        amount: 130.50,
+                        currency: CURRENCY.USD,
+                        sender: user,
+                        recipient: seededUser,
                     },
                     {
-                    amount: 1000,
-                    currency: CURRENCY.KES,
-                    sender: user,
-                    recipient: seededUser,
+                        amount: 1000,
+                        currency: CURRENCY.KES,
+                        sender: user,
+                        recipient: seededUser,
                     },
                 ]);
 

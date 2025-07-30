@@ -12,15 +12,14 @@
     "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -d ./src/database/ormconfig.ts",
     "migration:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert -d ./src/database/ormconfig.ts",
     "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d ./src/database/ormconfig.ts",
-      "seed:run": "ts-node src/database/seeds/user.seed.ts"
-
-
+    "seed:run": "ts-node src/database/seeds/user.seed.ts"
   },
   "author": "Daniel Maina",
   "license": "MIT",
   "dependencies": {
     "@types/express": "^5.0.3",
     "@types/node": "^24.1.0",
+    "axios": "^1.11.0",
     "bcrypt": "^6.0.0",
     "cliui": "7.0.4",
     "concurrently": "^9.2.0",

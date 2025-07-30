@@ -9,7 +9,7 @@ const seedUsers = async () => {
   `);
 
   if (existingUsers.length > 0) {
-    console.log('⚠️ Users already seeded. Skipping...');
+    console.log('Users already seeded. Skipping...');
     process.exit(0);
   }
 
@@ -21,7 +21,7 @@ const seedUsers = async () => {
     ON CONFLICT (email) DO NOTHING;
   `);
 
-  console.log('✅ Seeded users with raw query!');
+  console.log('Seeded users with raw query!');
   process.exit(0);
 };
 

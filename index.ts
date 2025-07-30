@@ -4,6 +4,8 @@ import { dataSource } from "./src/database/ormconfig";
 import AuthRouter from "./src/modules/auth";
 import cors from 'cors';
 import morgan from 'morgan';
+import TransactionRouter from "./src/modules/transactions";
+
 
 
 configDotenv();
@@ -26,7 +28,10 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
 
-app.use('/api', AuthRouter);
+const appPrefix = '/api';
+
+app.use(appPrefix, AuthRouter);
+app.use(appPrefix,  TransactionRouter);
 
 app.listen(process.env.PORT || 5000, () => {
   console.log(`Server is running on port ${process.env.PORT || 5000}`);
