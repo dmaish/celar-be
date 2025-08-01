@@ -11,8 +11,8 @@ declare global {
 
 export const authenticate = (req: Request, res: Response, next: NextFunction) => {
   let token = req.headers.authorization
-    || req.body.token
-    || req.query.token;
+    || req.body?.token
+    || req.query?.token;
 
   if (!token) {
     return res.status(401).json({

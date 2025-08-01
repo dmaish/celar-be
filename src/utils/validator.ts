@@ -2,9 +2,11 @@ import { body } from 'express-validator';
 
 export const signupValidator = [
   body('email')
+    .exists().withMessage('Email is required')
     .isEmail().withMessage('Must be a valid email')
     .normalizeEmail(),
   body('password')
+    .exists().withMessage('Password is required')
     .isLength({ min: 8 }).withMessage('Password must be at least 8 characters')
     .matches(/[A-Z]/).withMessage('Must contain an uppercase letter')
     .matches(/[a-z]/).withMessage('Must contain a lowercase letter')
@@ -17,7 +19,9 @@ export const signupValidator = [
 
 export const loginValidator = [
   body('email')
-        .exists().withMessage('email is required'),
+        .exists().withMessage('email is required')
+        .isEmail().withMessage('Must be a valid email')
+        .normalizeEmail(),
   body('password')
     .exists().withMessage('password is required')
 ];

@@ -2,6 +2,7 @@ import { configDotenv } from "dotenv";
 import express, { Express, Request, Response } from "express";
 import { dataSource } from "./src/database/ormconfig";
 import AuthRouter from "./src/modules/auth";
+import UserRouter from "./src/modules/user";
 import cors from 'cors';
 import morgan from 'morgan';
 import TransactionRouter from "./src/modules/transactions";
@@ -11,7 +12,6 @@ import TransactionRouter from "./src/modules/transactions";
 configDotenv();
 
 dataSource.initialize()
-
     .then(() => {
       console.log("Database connection established successfully.");
     })
@@ -32,6 +32,7 @@ const appPrefix = '/api';
 
 app.use(appPrefix, AuthRouter);
 app.use(appPrefix,  TransactionRouter);
+app.use(appPrefix,  UserRouter);
 
 app.listen(process.env.PORT || 5000, () => {
   console.log(`Server is running on port ${process.env.PORT || 5000}`);
